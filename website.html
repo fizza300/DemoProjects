@@ -1,0 +1,791 @@
+
+<!doctype html>
+<html lang="en-US">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.v="1.2.3",this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{let r=arguments[0][e];delete arguments[0][e],arguments[0][t(e)]=r})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+	
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://www.recogni.com/wp-content/themes/bigdrop-theme/dist/images/favicon/apple-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://www.recogni.com/wp-content/themes/bigdrop-theme/dist/images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://www.recogni.com/wp-content/themes/bigdrop-theme/dist/images/favicon/favicon-16x16.png">
+	<meta name='robots' content='max-image-preview:large' />
+
+	<!-- This site is optimized with the Yoast SEO plugin v21.1 - https://yoast.com/wordpress/plugins/seo/ -->
+	<title>About Us - Recogni</title>
+	<meta name="description" content="Through our ability to process high resolution camera data in real-time, we allow self-driving cars to navigate without any human intervention under any condition." />
+	<link rel="canonical" href="https://www.recogni.com/about/" />
+	<meta property="og:locale" content="en_US" />
+	<meta property="og:type" content="article" />
+	<meta property="og:title" content="About Us - Recogni" />
+	<meta property="og:description" content="Through our ability to process high resolution camera data in real-time, we allow self-driving cars to navigate without any human intervention under any condition." />
+	<meta property="og:url" content="https://www.recogni.com/about/" />
+	<meta property="og:site_name" content="Recogni" />
+	<meta property="article:modified_time" content="2023-01-13T00:56:11+00:00" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@Recogni_Inc" />
+	<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.recogni.com/about/","url":"https://www.recogni.com/about/","name":"About Us - Recogni","isPartOf":{"@id":"https://www.recogni.com/#website"},"datePublished":"2022-03-26T23:54:10+00:00","dateModified":"2023-01-13T00:56:11+00:00","description":"Through our ability to process high resolution camera data in real-time, we allow self-driving cars to navigate without any human intervention under any condition.","breadcrumb":{"@id":"https://www.recogni.com/about/#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.recogni.com/about/"]}]},{"@type":"BreadcrumbList","@id":"https://www.recogni.com/about/#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.recogni.com/"},{"@type":"ListItem","position":2,"name":"About"}]},{"@type":"WebSite","@id":"https://www.recogni.com/#website","url":"https://www.recogni.com/","name":"Recogni","description":"Realtime Object Recognition","publisher":{"@id":"https://www.recogni.com/#organization"},"potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.recogni.com/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Organization","@id":"https://www.recogni.com/#organization","name":"Recogni","url":"https://www.recogni.com/","logo":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.recogni.com/#/schema/logo/image/","url":"https://www.recogni.com/wp-content/uploads/2022/03/main-logo.svg","contentUrl":"https://www.recogni.com/wp-content/uploads/2022/03/main-logo.svg","width":1,"height":1,"caption":"Recogni"},"image":{"@id":"https://www.recogni.com/#/schema/logo/image/"},"sameAs":["https://twitter.com/Recogni_Inc","https://www.instagram.com/recogni_inc/","https://www.linkedin.com/company/recogni/"]}]}</script>
+	<!-- / Yoast SEO plugin. -->
+
+
+<style id='classic-theme-styles-inline-css' type='text/css'>
+/*! This file is auto-generated */
+.wp-block-button__link{color:#fff;background-color:#32373c;border-radius:9999px;box-shadow:none;text-decoration:none;padding:calc(.667em + 2px) calc(1.333em + 2px);font-size:1.125em}.wp-block-file__button{background:#32373c;color:#fff;text-decoration:none}
+</style>
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}:where(.is-layout-grid){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}body .is-layout-grid{display: grid;}body .is-layout-grid > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-post-template.is-layout-flex){gap: 1.25em;}:where(.wp-block-post-template.is-layout-grid){gap: 1.25em;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}:where(.wp-block-columns.is-layout-grid){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link rel='stylesheet' id='cmplz-general-css' href='https://www.recogni.com/wp-content/plugins/complianz-gdpr/assets/css/cookieblocker.min.css?ver=6.5.3' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='bigdrop_theme-global-style-css' href='https://www.recogni.com/wp-content/cache/min/1/wp-content/themes/bigdrop-theme/dist/css/style.min.css?ver=1694477156' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='theme-style-css' href='https://www.recogni.com/wp-content/cache/min/1/wp-content/themes/bigdrop-theme/style.css?ver=1694477156' type='text/css' media='all' />
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.recogni.com/wp-content/cache/min/1/ajax/libs/jquery/3.6.1/jquery.min.js?ver=1694477156' id='jquery-js' defer></script>
+<!-- Google Tag Manager -->
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-PKTX82S');</script>
+<!-- End Google Tag Manager --><style>.cmplz-hidden{display:none!important;}</style>		<style type="text/css" id="wp-custom-css">
+			.sdk-top-mrg{
+	margin-top: 140px !important;
+}
+
+.media-accordion-holder{
+	display: none !important;
+}
+#product-info p{
+	font-weight: 400 !important;
+	font-size: 22px;
+  line-height: 32px;
+}
+
+.media-accordion-item-custom a{
+background: linear-gradient(270deg,#413ada 0%,#00bdc6 100%);	
+}
+
+.media-accordion-item-custom a:hover{
+background: #ffffff;	
+}		</style>
+		<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript></head>
+
+<body data-cmplz=1 class="page-template-default page page-id-112">
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PKTX82S"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->    <div class="wrapper">
+        <header class="header @@alter-class">
+    <div class="header-holder">
+                    <strong class="mobile-logo">
+                <a href="https://www.recogni.com/">
+                    <img width="136" height="35" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20136%2035'%3E%3C/svg%3E" alt="Recogni" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/main-logo.svg"><noscript><img width="136" height="35" src="https://www.recogni.com/wp-content/uploads/2022/03/main-logo.svg" alt="Recogni"></noscript>
+                </a>
+            </strong>
+                <nav class="main-nav">
+            <div class="nav-holder">
+                <div class="menu-holder">
+                    <ul id="menu-header-menu-left" class=""><li id="menu-item-342" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-112 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children menu-item-342"><a href="https://www.recogni.com/about/" aria-current="page">About</a>
+<ul class="sub-menu">
+	<li id="menu-item-974" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-974"><a href="https://www.recogni.com/about/#our-mission" aria-current="page">Mission</a></li>
+	<li id="menu-item-975" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-975"><a href="https://www.recogni.com/about/#investors" aria-current="page">Investors</a></li>
+	<li id="menu-item-976" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-976"><a href="https://www.recogni.com/about/#our-values" aria-current="page">Values</a></li>
+	<li id="menu-item-977" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item menu-item-977"><a href="https://www.recogni.com/about/#directors" aria-current="page">Board of Directors</a></li>
+</ul>
+</li>
+<li id="menu-item-958" class="not-current menu-item menu-item-type-custom menu-item-object-custom menu-item-958"><a href="/#product-info">Product</a></li>
+<li id="menu-item-343" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-343"><a href="https://www.recogni.com/media/">Media Center</a></li>
+</ul>                                            <strong class="desktop-logo">
+                            <a href="https://www.recogni.com/">
+                                <img width="136" height="35" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20136%2035'%3E%3C/svg%3E" alt="Recogni" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/main-logo.svg"><noscript><img width="136" height="35" src="https://www.recogni.com/wp-content/uploads/2022/03/main-logo.svg" alt="Recogni"></noscript>
+                            </a>
+                        </strong>
+                                        <ul id="menu-header-menu-right" class=""><li id="menu-item-1181" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1181"><a href="https://www.recogni.com/careers/">Careers</a></li>
+<li id="menu-item-345" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-345"><a href="https://www.recogni.com/contact-us/">Contact us</a></li>
+</ul>                </div>
+                                    <ul class="social-list">
+                                                    <li>
+                                <a href="https://twitter.com/Recogni_Inc/" target="_blank" aria-label="Social Link"><svg width="14" height="12" viewBox="0 0 14 12" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.49102 11.0625C9.58525 11.0625 12.3723 7.16578 12.3723 3.79265C12.3723 3.68307 12.3723 3.5735 12.3669 3.46392C12.9097 3.10116 13.378 2.65212 13.75 2.13783C13.2435 2.34424 12.7067 2.4804 12.157 2.54189C12.7362 2.22206 13.1698 1.71922 13.3774 1.12676C12.833 1.42464 12.237 1.63378 11.6157 1.74498C11.357 1.49009 11.0443 1.2869 10.697 1.148C10.3498 1.0091 9.97525 0.937453 9.59673 0.9375C8.86183 0.937995 8.15719 1.20748 7.63754 1.68677C7.11789 2.16607 6.82571 2.81599 6.82518 3.49381C6.82518 3.69303 6.85218 3.88728 6.89538 4.07654C5.7937 4.02552 4.71598 3.76136 3.73218 3.30123C2.74838 2.84109 1.8805 2.19527 1.18488 1.40568C0.831366 1.96884 0.723451 2.63497 0.883039 3.26884C1.04263 3.90271 1.45776 4.45681 2.04415 4.81866C1.60478 4.80463 1.17515 4.69543 0.79 4.4999V4.53476C0.790594 5.12453 1.01189 5.69603 1.41651 6.15271C1.82113 6.60939 2.38425 6.92325 3.01075 7.04126C2.77332 7.10167 2.52805 7.13183 2.28175 7.13091C2.10288 7.13091 1.93007 7.11597 1.762 7.08609C1.9386 7.59398 2.28311 8.03817 2.74722 8.35637C3.21132 8.67457 3.77176 8.85083 4.34995 8.86044C3.36887 9.57177 2.15672 9.95774 0.9088 9.95618C0.6874 9.95618 0.466 9.94622 0.25 9.92131C1.51678 10.6669 2.98829 11.0629 4.49102 11.0625Z"
+                                      fill="white"/>
+                            </svg></a>
+                            </li>
+                                                    <li>
+                                <a href="https://www.instagram.com/recogni_inc/" target="_blank" aria-label="Social Link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.99935 5.65672C6.70912 5.65672 5.65619 6.70965 5.65619 7.99989C5.65619 9.29012 6.70912 10.3431 7.99935 10.3431C9.28958 10.3431 10.3425 9.29012 10.3425 7.99989C10.3425 6.70965 9.28958 5.65672 7.99935 5.65672ZM15.0271 7.99989C15.0271 7.02958 15.0359 6.06805 14.9814 5.0995C14.9269 3.9745 14.6702 2.97606 13.8476 2.1534C13.0232 1.32899 12.0265 1.07411 10.9015 1.01961C9.93119 0.965122 8.96966 0.973912 8.00111 0.973912C7.0308 0.973912 6.06927 0.965122 5.10072 1.01961C3.97572 1.07411 2.97728 1.33075 2.15462 2.1534C1.33021 2.97782 1.07533 3.9745 1.02084 5.0995C0.966343 6.06981 0.975132 7.03133 0.975132 7.99989C0.975132 8.96844 0.966343 9.93172 1.02084 10.9003C1.07533 12.0253 1.33197 13.0237 2.15462 13.8464C2.97904 14.6708 3.97572 14.9257 5.10072 14.9802C6.07103 15.0347 7.03255 15.0259 8.00111 15.0259C8.97142 15.0259 9.93294 15.0347 10.9015 14.9802C12.0265 14.9257 13.0249 14.669 13.8476 13.8464C14.672 13.022 14.9269 12.0253 14.9814 10.9003C15.0376 9.93172 15.0271 8.9702 15.0271 7.99989ZM7.99935 11.6052C6.00423 11.6052 4.39408 9.99501 4.39408 7.99989C4.39408 6.00477 6.00423 4.39461 7.99935 4.39461C9.99447 4.39461 11.6046 6.00477 11.6046 7.99989C11.6046 9.99501 9.99447 11.6052 7.99935 11.6052ZM11.7523 5.08895C11.2865 5.08895 10.9103 4.71278 10.9103 4.24696C10.9103 3.78114 11.2865 3.40497 11.7523 3.40497C12.2181 3.40497 12.5943 3.78114 12.5943 4.24696C12.5944 4.35757 12.5727 4.46712 12.5305 4.56934C12.4882 4.67156 12.4262 4.76443 12.348 4.84265C12.2698 4.92086 12.1769 4.98288 12.0747 5.02514C11.9724 5.06741 11.8629 5.08909 11.7523 5.08895Z"
+                                      fill="white"/>
+                            </svg></a>
+                            </li>
+                                            </ul>
+                            </div>
+        </nav>
+        <button class="menu-opener" aria-label="Menu Opener"><i></i></button>
+    </div>
+</header>
+        <main class="main">
+
+<section class="section page-title">
+            <div data-bg="https://www.recogni.com/wp-content/uploads/2022/03/about-bg.png" class="photo has-animation zoomOut rocket-lazyload"
+             style=""></div>
+            <div class="wrap has-animation fadeIn animation-delay">
+                    <h1 class="h2">We deliver state-of-the-art visual perception for Autonomous Vehicles</h1>
+                    </div>
+    </section>
+
+
+    <div class="section" id="our-mission">
+        <div class="container">
+            <div class="info-on-frame has-animation fadeInUp">
+                                    <div class="subtitle"><strong>our mission</strong></div>
+                                                    <h3 class="h2">Providing the highest performing AI-based visual inference for autonomous vehicles</h3>
+                            </div>
+        </div>
+    </div>
+
+
+    <div class="section" id="investors">
+        <div class="container">
+                            <div class="section-title-holder has-animation fadeInUp">
+                                            <div class="h2">Our Investors</div>
+                                                                <p>We are backed by the most prominent technology and automotive industry investors</p>
+                                    </div>
+                        <div class="investors-list has-animation fadeInUp">
+                                                            <div class="item">
+                            <a href="https://www.gpv.com/"
+                               target="_blank">
+                                <img width="211" height="61" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20211%2061'%3E%3C/svg%3E"
+                                     alt="GreatPoint" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-01.svg"><noscript><img width="211" height="61" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-01.svg"
+                                     alt="GreatPoint"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://www.mayfield.com/"
+                               target="_blank">
+                                <img width="158" height="53" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20158%2053'%3E%3C/svg%3E"
+                                     alt="Mayfield" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-02.svg"><noscript><img width="158" height="53" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-02.svg"
+                                     alt="Mayfield"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://www.bmwiventures.com/"
+                               target="_blank">
+                                <img width="82" height="82" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2082%2082'%3E%3C/svg%3E"
+                                     alt="BMW" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-03.svg"><noscript><img width="82" height="82" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-03.svg"
+                                     alt="BMW"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://www.rbvc.com/"
+                               target="_blank">
+                                <img width="186" height="32" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20186%2032'%3E%3C/svg%3E"
+                                     alt="Bosch" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-04.svg"><noscript><img width="186" height="32" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-04.svg"
+                                     alt="Bosch"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://www.fluxunit.de/"
+                               target="_blank">
+                                <img width="210" height="51" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20210%2051'%3E%3C/svg%3E"
+                                     alt="Fluxunit" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-05.svg"><noscript><img width="210" height="51" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-05.svg"
+                                     alt="Fluxunit"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://www.celesta.vc/"
+                               target="_blank">
+                                <img width="199" height="38" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20199%2038'%3E%3C/svg%3E"
+                                     alt="Celesta" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-06.svg"><noscript><img width="199" height="38" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-06.svg"
+                                     alt="Celesta"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://toyota.ventures/"
+                               target="_blank">
+                                <img width="174" height="47" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20174%2047'%3E%3C/svg%3E"
+                                     alt="Toyota Ventures" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-07.svg"><noscript><img width="174" height="47" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-07.svg"
+                                     alt="Toyota Ventures"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://www.continental.com/"
+                               target="_blank">
+                                <img width="184" height="35" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20184%2035'%3E%3C/svg%3E"
+                                     alt="Continental" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-08.svg"><noscript><img width="184" height="35" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-08.svg"
+                                     alt="Continental"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://www.dnscap.com/"
+                               target="_blank">
+                                <img width="208" height="46" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20208%2046'%3E%3C/svg%3E"
+                                     alt="DNS Capital" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-09.svg"><noscript><img width="208" height="46" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-09.svg"
+                                     alt="DNS Capital"></noscript>
+                            </a>
+                        </div>
+                                                                                <div class="item">
+                            <a href="https://www.faurecia.com/"
+                               target="_blank">
+                                <img width="199" height="78" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20199%2078'%3E%3C/svg%3E"
+                                     alt="Faurecia Inspiring Mobility" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/logo-10.svg"><noscript><img width="199" height="78" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/logo-10.svg"
+                                     alt="Faurecia Inspiring Mobility"></noscript>
+                            </a>
+                        </div>
+                                                </div>
+        </div>
+    </div>
+
+
+    <div class="section" id="our-values">
+        <div class="container">
+                            <div class="section-title-holder has-animation fadeInUp">
+                                            <div class="h2">Our Values</div>
+                                                        </div>
+                        <div class="our-values-list has-animation ">
+                                                            <div class="item">
+                            <div class="ico-holder">
+                                                                    <img width="50" height="50" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2050%2050'%3E%3C/svg%3E"
+                                         alt="Innovative" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/our-values-ico-01.svg"><noscript><img width="50" height="50" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/our-values-ico-01.svg"
+                                         alt="Innovative"></noscript>
+                                                            </div>
+                            <h3 class="h4">Innovation</h3>
+                                                            <p>Recogni&#8217;s innovative approach in high resolution imaging and perception processing with low power consumption footprint democratizes driving autonomy and its widespread adoption.</p>
+                                                    </div>
+                                                                                <div class="item">
+                            <div class="ico-holder">
+                                                                    <img width="56" height="50" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2056%2050'%3E%3C/svg%3E"
+                                         alt="Safety" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/our-values-ico-02.svg"><noscript><img width="56" height="50" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/our-values-ico-02.svg"
+                                         alt="Safety"></noscript>
+                                                            </div>
+                            <h3 class="h4">Safety</h3>
+                                                            <p>Recogni’s zero lag, high performing perception processing is a core attribute to “better-than-human” autonomous vehicle safety</p>
+                                                    </div>
+                                                                                <div class="item">
+                            <div class="ico-holder">
+                                                                    <img width="50" height="50" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2050%2050'%3E%3C/svg%3E"
+                                         alt="Efficiency" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/our-values-ico-03.svg"><noscript><img width="50" height="50" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/our-values-ico-03.svg"
+                                         alt="Efficiency"></noscript>
+                                                            </div>
+                            <h3 class="h4">Efficiency</h3>
+                                                            <p>Recogni&#8217;s novel combined depth sensing and perception processing with low system overhead obviates existing complex GPU/CPU/DSP based systems.</p>
+                                                    </div>
+                                                </div>
+                    </div>
+    </div>
+
+
+<div class="section corporate-timeline">
+    <div class="container">
+                    <div class="corporate-timeline__title h2">Сorporate timeline</div>
+                        <div class="corporate-timeline__desktop has-animation fadeInUp">
+            <picture class="attachment-full size-full" decoding="async" loading="lazy">
+<source type="image/webp" data-lazy-srcset="https://www.recogni.com/wp-content/uploads/2022/10/unnamed.png.webp 2560w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-300x108.png.webp 300w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1024x368.png.webp 1024w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-768x276.png.webp 768w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1536x552.png.webp 1536w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-2048x736.png.webp 2048w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1920x690.png.webp 1920w" srcset="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%202560%20920&#039;%3E%3C/svg%3E" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px"/>
+<img width="2560" height="920" src="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%202560%20920&#039;%3E%3C/svg%3E" alt="Сorporate timeline" decoding="async" loading="lazy" data-lazy-srcset="https://www.recogni.com/wp-content/uploads/2022/10/unnamed.png 2560w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-300x108.png 300w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1024x368.png 1024w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-768x276.png 768w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1536x552.png 1536w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-2048x736.png 2048w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1920x690.png 1920w" data-lazy-sizes="(max-width: 2560px) 100vw, 2560px" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/10/unnamed.png"/>
+</picture>
+<noscript><picture class="attachment-full size-full" decoding="async" loading="lazy">
+<source type="image/webp" srcset="https://www.recogni.com/wp-content/uploads/2022/10/unnamed.png.webp 2560w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-300x108.png.webp 300w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1024x368.png.webp 1024w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-768x276.png.webp 768w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1536x552.png.webp 1536w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-2048x736.png.webp 2048w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1920x690.png.webp 1920w" sizes="(max-width: 2560px) 100vw, 2560px"/>
+<img width="2560" height="920" src="https://www.recogni.com/wp-content/uploads/2022/10/unnamed.png" alt="Сorporate timeline" decoding="async" loading="lazy" srcset="https://www.recogni.com/wp-content/uploads/2022/10/unnamed.png 2560w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-300x108.png 300w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1024x368.png 1024w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-768x276.png 768w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1536x552.png 1536w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-2048x736.png 2048w, https://www.recogni.com/wp-content/uploads/2022/10/unnamed-1920x690.png 1920w" sizes="(max-width: 2560px) 100vw, 2560px"/>
+</picture>
+</noscript>        </div>
+                        <div class="corporate-timeline__mobile">
+            <picture decoding="async">
+<source type="image/webp" data-lazy-srcset="https://www.recogni.com/wp-content/uploads/2022/10/unnamed-vertical-scaled.jpg.webp" srcset="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%20920%202560&#039;%3E%3C/svg%3E"/>
+<img width="920" height="2560" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%20920%202560&#039;%3E%3C/svg%3E" alt="Сorporate timeline" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/10/unnamed-vertical-scaled.jpg"/>
+</picture>
+<noscript><picture decoding="async">
+<source type="image/webp" srcset="https://www.recogni.com/wp-content/uploads/2022/10/unnamed-vertical-scaled.jpg.webp"/>
+<img width="920" height="2560" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/10/unnamed-vertical-scaled.jpg" alt="Сorporate timeline"/>
+</picture>
+</noscript>
+        </div>
+            </div>
+</div>
+
+
+<section id="directors" class="section our-people">
+    <div class="container">
+                    <div class="section-title-holder big-bottom-indent has-animation fadeInUp">
+                                    <div class="h2">Join Our Team</div>
+                                                    <p>Looking for a dynamic workplace where you will contribute to developing and bringing game-changing technology to the market? Check out our job postings in the link below!</p>
+                                                    <a href="https://www.recogni.com/careers/"  class="button">View Career Opportunities</a>                            </div>
+                <div class="section-title-holder has-animation fadeInUp">
+                            <div class="h2">Board of Directors</div>
+                                        <p>Our company has a cross-functional team that has grown exponentially since our inception</p>
+                                </div>
+                    <div class="team-list has-animation">
+                                                        <div class="item" data-post-id="1017">
+                                                    <div class="photo-holder">
+                                <div data-bg="https://www.recogni.com/wp-content/uploads/2022/07/image.png" class="photo rocket-lazyload"
+                                     style=""></div>
+                                <button class="bio-popup-opener"></button>
+                            </div>
+                                                <h3 class="h6">Marc Bolitho</h3>
+                                                    <div class="position">CEO @ Recogni</div>
+                                            </div>
+                                                        <div class="item" data-post-id="178">
+                                                    <div class="photo-holder">
+                                <div data-bg="https://www.recogni.com/wp-content/uploads/2022/03/our-team-01.png" class="photo rocket-lazyload"
+                                     style=""></div>
+                                <button class="bio-popup-opener"></button>
+                            </div>
+                                                <h3 class="h6">Ashok Krishnamurthi</h3>
+                                                    <div class="position">GreatPoint Ventures</div>
+                                            </div>
+                                                        <div class="item" data-post-id="187">
+                                                    <div class="photo-holder">
+                                <div data-bg="https://www.recogni.com/wp-content/uploads/2022/03/our-team-03.png" class="photo rocket-lazyload"
+                                     style=""></div>
+                                <button class="bio-popup-opener"></button>
+                            </div>
+                                                <h3 class="h6">Sriram Viswanathan</h3>
+                                                    <div class="position">CELESTA</div>
+                                            </div>
+                                                        <div class="item" data-post-id="183">
+                                                    <div class="photo-holder">
+                                <div data-bg="https://www.recogni.com/wp-content/uploads/2022/03/our-team-02.png" class="photo rocket-lazyload" style=""></div>
+                                <button class="bio-popup-opener"></button>
+                            </div>
+                                                <h3 class="h6">Peter Mertens</h3>
+                                                    <div class="position">INDEPENDENT</div>
+                                            </div>
+                                                        <div class="item" data-post-id="188">
+                                                    <div class="photo-holder">
+                                <div data-bg="https://www.recogni.com/wp-content/uploads/2022/03/our-team-04.png" class="photo rocket-lazyload"
+                                     style=""></div>
+                                <button class="bio-popup-opener"></button>
+                            </div>
+                                                <h3 class="h6">RK Anand</h3>
+                                                    <div class="position">CPO @ Recogni</div>
+                                            </div>
+                                            </div>
+            </div>
+</section>
+
+
+    <div class="section">
+        <div class="container">
+                            <div class="section-title-holder has-animation fadeInUp">
+                                            <div class="h2">Visit Us</div>
+                                                        </div>
+                        <div class="our-offices has-animation">
+                                                            <div class="item">
+                            <div class="map-holder">
+                                <picture decoding="async">
+<source type="image/webp" data-lazy-srcset="https://www.recogni.com/wp-content/uploads/2022/03/offices-img-01.png.webp" srcset="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%20750%20600&#039;%3E%3C/svg%3E"/>
+<img width="750" height="600" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%20750%20600&#039;%3E%3C/svg%3E" alt="United States, San Jose, CA, 2590 N 1st St Suite 360" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/offices-img-01.png"/>
+</picture>
+<noscript><picture decoding="async">
+<source type="image/webp" srcset="https://www.recogni.com/wp-content/uploads/2022/03/offices-img-01.png.webp"/>
+<img width="750" height="600" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/offices-img-01.png" alt="United States, San Jose, CA, 2590 N 1st St Suite 360"/>
+</picture>
+</noscript>
+                            </div>
+                            <h4>San Jose, CA, 95131</h4>
+                                                            <address>
+                                                                            <p>United States</p>
+                                                                                                                <p>2590 N 1st St Suite 320</p>
+                                                                    </address>
+                                                                                        <p>
+                                    <a href="tel:14084900098">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.6268 11.9883L13.2985 11.7225C13.0247 11.6903 12.7472 11.7206 12.4868 11.8111C12.2264 11.9016 11.99 12.05 11.7951 12.245L10.1085 13.9317C7.50623 12.6082 5.3911 10.4931 4.06764 7.89082L5.76347 6.19499C6.15764 5.80082 6.35014 5.25082 6.28597 4.69166L6.02014 2.38166C5.96817 1.93448 5.75357 1.52204 5.41719 1.22285C5.08081 0.92366 4.64615 0.758622 4.19597 0.759157H2.61014C1.57431 0.759157 0.712638 1.62082 0.776805 2.65666C1.26264 10.485 7.52347 16.7367 15.3426 17.2225C16.3785 17.2867 17.2401 16.425 17.2401 15.3892V13.8033C17.2493 12.8775 16.5526 12.0983 15.6268 11.9883Z"
+                                                  fill="#00BDC6"/>
+                                        </svg>
+                                        +1 (408) 490-0098                                    </a>
+                                </p>
+                                                    </div>
+                                                                                <div class="item">
+                            <div class="map-holder">
+                                <picture decoding="async">
+<source type="image/webp" data-lazy-srcset="https://www.recogni.com/wp-content/uploads/2022/03/offices-img-02.png.webp" srcset="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%20750%20600&#039;%3E%3C/svg%3E"/>
+<img width="750" height="600" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%20750%20600&#039;%3E%3C/svg%3E" alt="Germany, München, 3. OG Seidlstraße 28 80335" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/offices-img-02.png"/>
+</picture>
+<noscript><picture decoding="async">
+<source type="image/webp" srcset="https://www.recogni.com/wp-content/uploads/2022/03/offices-img-02.png.webp"/>
+<img width="750" height="600" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/03/offices-img-02.png" alt="Germany, München, 3. OG Seidlstraße 28 80335"/>
+</picture>
+</noscript>
+                            </div>
+                            <h4>München, 80333</h4>
+                                                            <address>
+                                                                            <p>Germany</p>
+                                                                                                                <p>1. OG Brienner straße 59</p>
+                                                                    </address>
+                                                                                        <p>
+                                    <a href="tel:491787561626">
+                                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                             xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M15.6268 11.9883L13.2985 11.7225C13.0247 11.6903 12.7472 11.7206 12.4868 11.8111C12.2264 11.9016 11.99 12.05 11.7951 12.245L10.1085 13.9317C7.50623 12.6082 5.3911 10.4931 4.06764 7.89082L5.76347 6.19499C6.15764 5.80082 6.35014 5.25082 6.28597 4.69166L6.02014 2.38166C5.96817 1.93448 5.75357 1.52204 5.41719 1.22285C5.08081 0.92366 4.64615 0.758622 4.19597 0.759157H2.61014C1.57431 0.759157 0.712638 1.62082 0.776805 2.65666C1.26264 10.485 7.52347 16.7367 15.3426 17.2225C16.3785 17.2867 17.2401 16.425 17.2401 15.3892V13.8033C17.2493 12.8775 16.5526 12.0983 15.6268 11.9883Z"
+                                                  fill="#00BDC6"/>
+                                        </svg>
+                                        +49 178 7561626                                    </a>
+                                </p>
+                                                    </div>
+                                                </div>
+        </div>
+    </div>
+
+
+<section class="section lets-talk has-animation fadeInUp">
+    <div class="container">
+        <div class="holder">
+            <div class="info">
+                                    <h2>Interested? Let&#8217;s Talk</h2>
+                                                                    <a href="https://www.recogni.com/contact-us/"  class="button white">Reach out to us</a>                            </div>
+                            <div class="img-holder">
+                    <picture decoding="async">
+<source type="image/webp" data-lazy-srcset="https://www.recogni.com/wp-content/uploads/2022/04/Subscribe-car.png.webp" srcset="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%20750%20291&#039;%3E%3C/svg%3E"/>
+<img width="750" height="291" decoding="async" src="data:image/svg+xml,%3Csvg%20xmlns=&#039;http://www.w3.org/2000/svg&#039;%20viewBox=&#039;0%200%20750%20291&#039;%3E%3C/svg%3E" alt="Enabling ADAS to Full Autonomy" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/04/Subscribe-car.png"/>
+</picture>
+<noscript><picture decoding="async">
+<source type="image/webp" srcset="https://www.recogni.com/wp-content/uploads/2022/04/Subscribe-car.png.webp"/>
+<img width="750" height="291" decoding="async" src="https://www.recogni.com/wp-content/uploads/2022/04/Subscribe-car.png" alt="Enabling ADAS to Full Autonomy"/>
+</picture>
+</noscript>
+                </div>
+                    </div>
+    </div>
+</section>
+    </main>
+    <footer class="footer @@alter-class">
+    <div class="container">
+        <div class="footer-holder">
+            <div class="logo-wrap">
+                                    <strong class="footer-logo">
+                        <a href="https://www.recogni.com/">
+                            <img width="136" height="35" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20136%2035'%3E%3C/svg%3E" alt="Recogni" data-lazy-src="https://www.recogni.com/wp-content/uploads/2022/03/main-logo.svg"><noscript><img width="136" height="35" src="https://www.recogni.com/wp-content/uploads/2022/03/main-logo.svg" alt="Recogni"></noscript>
+                        </a>
+                    </strong>
+                                                    <p>We enable state-of-the-art visual perception for Autonomous Vehicles. Through our ability to process high resolution camera data in real-time, we allow self-driving cars to navigate without any human intervention under any condition.
+</p>
+                            </div>
+            <nav class="footer-nav">
+                <ul id="menu-footer-menu" class=""><li id="menu-item-346" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-112 current_page_item menu-item-346"><a href="https://www.recogni.com/about/" aria-current="page">About</a></li>
+<li id="menu-item-347" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-347"><a href="https://www.recogni.com/category/articles/">Articles</a></li>
+<li id="menu-item-1182" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-1182"><a href="https://www.recogni.com/careers/">Careers</a></li>
+<li id="menu-item-349" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-349"><a href="https://www.recogni.com/contact-us/">Contact us</a></li>
+<li id="menu-item-930" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-930"><a href="https://www.recogni.com/terms-conditions/">Terms &#038; conditions</a></li>
+</ul>            </nav>
+                            <div class="social-block">
+                    <p>Follow Us</p>
+                    <ul class="social-list">
+                                                    <li>
+                                <a href="https://twitter.com/Recogni_Inc/" target="_blank" aria-label="Social Link"><svg width="14" height="12" viewBox="0 0 14 12" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4.49102 11.0625C9.58525 11.0625 12.3723 7.16578 12.3723 3.79265C12.3723 3.68307 12.3723 3.5735 12.3669 3.46392C12.9097 3.10116 13.378 2.65212 13.75 2.13783C13.2435 2.34424 12.7067 2.4804 12.157 2.54189C12.7362 2.22206 13.1698 1.71922 13.3774 1.12676C12.833 1.42464 12.237 1.63378 11.6157 1.74498C11.357 1.49009 11.0443 1.2869 10.697 1.148C10.3498 1.0091 9.97525 0.937453 9.59673 0.9375C8.86183 0.937995 8.15719 1.20748 7.63754 1.68677C7.11789 2.16607 6.82571 2.81599 6.82518 3.49381C6.82518 3.69303 6.85218 3.88728 6.89538 4.07654C5.7937 4.02552 4.71598 3.76136 3.73218 3.30123C2.74838 2.84109 1.8805 2.19527 1.18488 1.40568C0.831366 1.96884 0.723451 2.63497 0.883039 3.26884C1.04263 3.90271 1.45776 4.45681 2.04415 4.81866C1.60478 4.80463 1.17515 4.69543 0.79 4.4999V4.53476C0.790594 5.12453 1.01189 5.69603 1.41651 6.15271C1.82113 6.60939 2.38425 6.92325 3.01075 7.04126C2.77332 7.10167 2.52805 7.13183 2.28175 7.13091C2.10288 7.13091 1.93007 7.11597 1.762 7.08609C1.9386 7.59398 2.28311 8.03817 2.74722 8.35637C3.21132 8.67457 3.77176 8.85083 4.34995 8.86044C3.36887 9.57177 2.15672 9.95774 0.9088 9.95618C0.6874 9.95618 0.466 9.94622 0.25 9.92131C1.51678 10.6669 2.98829 11.0629 4.49102 11.0625Z"
+                                      fill="white"/>
+                            </svg></a>
+                            </li>
+                                                    <li>
+                                <a href="https://www.instagram.com/recogni_inc/" target="_blank" aria-label="Social Link"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.99935 5.65672C6.70912 5.65672 5.65619 6.70965 5.65619 7.99989C5.65619 9.29012 6.70912 10.3431 7.99935 10.3431C9.28958 10.3431 10.3425 9.29012 10.3425 7.99989C10.3425 6.70965 9.28958 5.65672 7.99935 5.65672ZM15.0271 7.99989C15.0271 7.02958 15.0359 6.06805 14.9814 5.0995C14.9269 3.9745 14.6702 2.97606 13.8476 2.1534C13.0232 1.32899 12.0265 1.07411 10.9015 1.01961C9.93119 0.965122 8.96966 0.973912 8.00111 0.973912C7.0308 0.973912 6.06927 0.965122 5.10072 1.01961C3.97572 1.07411 2.97728 1.33075 2.15462 2.1534C1.33021 2.97782 1.07533 3.9745 1.02084 5.0995C0.966343 6.06981 0.975132 7.03133 0.975132 7.99989C0.975132 8.96844 0.966343 9.93172 1.02084 10.9003C1.07533 12.0253 1.33197 13.0237 2.15462 13.8464C2.97904 14.6708 3.97572 14.9257 5.10072 14.9802C6.07103 15.0347 7.03255 15.0259 8.00111 15.0259C8.97142 15.0259 9.93294 15.0347 10.9015 14.9802C12.0265 14.9257 13.0249 14.669 13.8476 13.8464C14.672 13.022 14.9269 12.0253 14.9814 10.9003C15.0376 9.93172 15.0271 8.9702 15.0271 7.99989ZM7.99935 11.6052C6.00423 11.6052 4.39408 9.99501 4.39408 7.99989C4.39408 6.00477 6.00423 4.39461 7.99935 4.39461C9.99447 4.39461 11.6046 6.00477 11.6046 7.99989C11.6046 9.99501 9.99447 11.6052 7.99935 11.6052ZM11.7523 5.08895C11.2865 5.08895 10.9103 4.71278 10.9103 4.24696C10.9103 3.78114 11.2865 3.40497 11.7523 3.40497C12.2181 3.40497 12.5943 3.78114 12.5943 4.24696C12.5944 4.35757 12.5727 4.46712 12.5305 4.56934C12.4882 4.67156 12.4262 4.76443 12.348 4.84265C12.2698 4.92086 12.1769 4.98288 12.0747 5.02514C11.9724 5.06741 11.8629 5.08909 11.7523 5.08895Z"
+                                      fill="white"/>
+                            </svg></a>
+                            </li>
+                                            </ul>
+                </div>
+                    </div>
+        <div class="copy">
+                            <ul class="add-links">
+                                            <li><a href="https://recognistaging.wpengine.com/privacy-policy/"  >Privacy Policy</a></li>
+                                    </ul>
+                                        <div class="copy-text">© 2023 Recogni. All rights reserved.</div>
+                    </div>
+    </div>
+</footer>
+
+    <div id="bio-popup" class="bio-popup popup">
+    <div class="popup-holder">
+        <div class="bio-popup-wrap">
+            <button class="popup-close">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M8.41425 7.00025L13.7072 1.70725C14.0982 1.31625 14.0982 0.68425 13.7072 0.29325C13.3162 -0.09775 12.6842 -0.09775 12.2933 0.29325L7.00025 5.58625L1.70725 0.29325C1.31625 -0.09775 0.68425 -0.09775 0.29325 0.29325C-0.09775 0.68425 -0.09775 1.31625 0.29325 1.70725L5.58625 7.00025L0.29325 12.2933C-0.09775 12.6842 -0.09775 13.3162 0.29325 13.7072C0.48825 13.9022 0.74425 14.0002 1.00025 14.0002C1.25625 14.0002 1.51225 13.9022 1.70725 13.7072L7.00025 8.41425L12.2933 13.7072C12.4882 13.9022 12.7443 14.0002 13.0002 14.0002C13.2562 14.0002 13.5122 13.9022 13.7072 13.7072C14.0982 13.3162 14.0982 12.6842 13.7072 12.2933L8.41425 7.00025Z"
+                          fill="white"/>
+                </svg>
+            </button>
+            <div class="bio-wrap">
+                <div class="photo-holder">
+                    <div class="photo"><img width="282" height="330" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20282%20330'%3E%3C/svg%3E" alt="img" data-lazy-src="https://www.recogni.com/wp-content/themes/bigdrop-theme/dist/images/our-team-01.png"><noscript><img width="282" height="330" src="https://www.recogni.com/wp-content/themes/bigdrop-theme/dist/images/our-team-01.png" alt="img"></noscript></div>
+                </div>
+                <div class="h4">Ashok Krishnamurthi</div>
+                <div class="position">Board Member and Investor Nowsta</div>
+                <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Est ut vulputate
+                    id scelerisque. At nunc sed orci diam accumsan suspendisse.</h6>
+                <p>Mauris sit venenatis, vulputate velit, sociis maecenas. Egestas tortor urna, congue ultrices vel.
+                    Non
+                    ipsum, facilisi felis consectetur suspendisse congue. Volutpat urna, lobortis rhoncus arcu ut
+                    maecenas mattis faucibus sed. Et arcu, amet, quam non viverra mauris scelerisque amet. Purus
+                    massa
+                    imperdiet placerat porttitor rhoncus faucibus. Nibh facilisi venenatis, amet neque nisl, a
+                    mauris.
+                    Dis tellus ipsum enim aliquam diam.
+                    Aliquam tellus et posuere ac nullam magna phasellus fusce odio. Aliquam metus.</p>
+                <div class="bio-social">
+                    <div>Ashok in Social Media</div>
+                    <ul class="social-list">
+                        <li>
+                            <a href="#">
+                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3.73866 5.39772C4.64496 5.39772 5.37966 4.66302 5.37966 3.75672C5.37966 2.85042 4.64496 2.11572 3.73866 2.11572C2.83236 2.11572 2.09766 2.85042 2.09766 3.75672C2.09766 4.66302 2.83236 5.39772 3.73866 5.39772Z"
+                                          fill="white"/>
+                                    <path d="M6.92681 6.64126V15.7455H9.75356V11.2433C9.75356 10.0553 9.97706 8.90476 11.4501 8.90476C12.9028 8.90476 12.9208 10.263 12.9208 11.3183V15.7463H15.7491V10.7535C15.7491 8.30101 15.2211 6.41626 12.3546 6.41626C10.9783 6.41626 10.0558 7.17151 9.67856 7.88626H9.64031V6.64126H6.92681ZM2.32031 6.64126H5.15156V15.7455H2.32031V6.64126Z"
+                                          fill="white"/>
+                                </svg>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+        
+    </div>
+    
+<!-- Consent Management powered by Complianz | GDPR/CCPA Cookie Consent https://wordpress.org/plugins/complianz-gdpr -->
+<div id="cmplz-cookiebanner-container"><div class="cmplz-cookiebanner cmplz-hidden banner-1 optin cmplz-bottom-right cmplz-categories-type-view-preferences" aria-modal="true" data-nosnippet="true" role="dialog" aria-live="polite" aria-labelledby="cmplz-header-1-optin" aria-describedby="cmplz-message-1-optin">
+	<div class="cmplz-header">
+		<div class="cmplz-logo"></div>
+		<div class="cmplz-title" id="cmplz-header-1-optin">Manage Cookie Consent</div>
+		<div class="cmplz-close" tabindex="0" role="button" aria-label="close-dialog">
+			<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" class="svg-inline--fa fa-times fa-w-11" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 352 512"><path fill="currentColor" d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"></path></svg>
+		</div>
+	</div>
+
+	<div class="cmplz-divider cmplz-divider-header"></div>
+	<div class="cmplz-body">
+		<div class="cmplz-message" id="cmplz-message-1-optin">To provide the best experiences, we use technologies like cookies to store and/or access device information. Consenting to these technologies will allow us to process data such as browsing behavior or unique IDs on this site. Not consenting or withdrawing consent, may adversely affect certain features and functions.</div>
+		<!-- categories start -->
+		<div class="cmplz-categories">
+			<details class="cmplz-category cmplz-functional" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Functional</span>
+							<span class='cmplz-always-active'>
+								<span class="cmplz-banner-checkbox">
+									<input type="checkbox"
+										   id="cmplz-functional-optin"
+										   data-category="cmplz_functional"
+										   class="cmplz-consent-checkbox cmplz-functional"
+										   size="40"
+										   value="1"/>
+									<label class="cmplz-label" for="cmplz-functional-optin" tabindex="0"><span class="screen-reader-text">Functional</span></label>
+								</span>
+								Always active							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-functional">The technical storage or access is strictly necessary for the legitimate purpose of enabling the use of a specific service explicitly requested by the subscriber or user, or for the sole purpose of carrying out the transmission of a communication over an electronic communications network.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-preferences" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Preferences</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-preferences-optin"
+									   data-category="cmplz_preferences"
+									   class="cmplz-consent-checkbox cmplz-preferences"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-preferences-optin" tabindex="0"><span class="screen-reader-text">Preferences</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-preferences">The technical storage or access is necessary for the legitimate purpose of storing preferences that are not requested by the subscriber or user.</span>
+				</div>
+			</details>
+
+			<details class="cmplz-category cmplz-statistics" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Statistics</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-statistics-optin"
+									   data-category="cmplz_statistics"
+									   class="cmplz-consent-checkbox cmplz-statistics"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-statistics-optin" tabindex="0"><span class="screen-reader-text">Statistics</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-statistics">The technical storage or access that is used exclusively for statistical purposes.</span>
+					<span class="cmplz-description-statistics-anonymous">The technical storage or access that is used exclusively for anonymous statistical purposes. Without a subpoena, voluntary compliance on the part of your Internet Service Provider, or additional records from a third party, information stored or retrieved for this purpose alone cannot usually be used to identify you.</span>
+				</div>
+			</details>
+			<details class="cmplz-category cmplz-marketing" >
+				<summary>
+						<span class="cmplz-category-header">
+							<span class="cmplz-category-title">Marketing</span>
+							<span class="cmplz-banner-checkbox">
+								<input type="checkbox"
+									   id="cmplz-marketing-optin"
+									   data-category="cmplz_marketing"
+									   class="cmplz-consent-checkbox cmplz-marketing"
+									   size="40"
+									   value="1"/>
+								<label class="cmplz-label" for="cmplz-marketing-optin" tabindex="0"><span class="screen-reader-text">Marketing</span></label>
+							</span>
+							<span class="cmplz-icon cmplz-open">
+								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"  height="18" ><path d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"/></svg>
+							</span>
+						</span>
+				</summary>
+				<div class="cmplz-description">
+					<span class="cmplz-description-marketing">The technical storage or access is required to create user profiles to send advertising, or to track the user on a website or across several websites for similar marketing purposes.</span>
+				</div>
+			</details>
+		</div><!-- categories end -->
+			</div>
+
+	<div class="cmplz-links cmplz-information">
+		<a class="cmplz-link cmplz-manage-options cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">Manage options</a>
+		<a class="cmplz-link cmplz-manage-third-parties cookie-statement" href="#" data-relative_url="#cmplz-cookies-overview">Manage services</a>
+		<a class="cmplz-link cmplz-manage-vendors tcf cookie-statement" href="#" data-relative_url="#cmplz-tcf-wrapper">Manage vendors</a>
+		<a class="cmplz-link cmplz-external cmplz-read-more-purposes tcf" target="_blank" rel="noopener noreferrer nofollow" href="https://cookiedatabase.org/tcf/purposes/">Read more about these purposes</a>
+			</div>
+
+	<div class="cmplz-divider cmplz-footer"></div>
+
+	<div class="cmplz-buttons">
+		<button class="cmplz-btn cmplz-accept">Accept</button>
+		<button class="cmplz-btn cmplz-deny">Deny</button>
+		<button class="cmplz-btn cmplz-view-preferences">View preferences</button>
+		<button class="cmplz-btn cmplz-save-preferences">Save preferences</button>
+		<a class="cmplz-btn cmplz-manage-options tcf cookie-statement" href="#" data-relative_url="#cmplz-manage-consent-container">View preferences</a>
+			</div>
+
+	<div class="cmplz-links cmplz-documents">
+		<a class="cmplz-link cookie-statement" href="#" data-relative_url="">{title}</a>
+		<a class="cmplz-link privacy-statement" href="#" data-relative_url="">{title}</a>
+		<a class="cmplz-link impressum" href="#" data-relative_url="">{title}</a>
+			</div>
+
+</div>
+</div>
+					<div id="cmplz-manage-consent" data-nosnippet="true"><button class="cmplz-btn cmplz-hidden cmplz-manage-consent manage-consent-1">Manage consent</button>
+
+</div><script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.recogni.com/wp-content/themes/bigdrop-theme/dist/js/global.min.js?ver=1676657458' id='global-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.recogni.com/wp-content/themes/bigdrop-theme/inc/assets/filter-positions.min.js?ver=20170215' id='filter-positions-js' defer></script>
+<script type='text/javascript' id='show-bio-js-extra'>
+/* <![CDATA[ */
+var vars = {"ajax":{"url":"https:\/\/www.recogni.com\/wp-admin\/admin-ajax.php","show_bio_nonce_token":"77bbf21ade","posts_filter_nonce_token":"2f31d18f5e"}};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.recogni.com/wp-content/themes/bigdrop-theme/inc/assets/show-bio.min.js?ver=20170215' id='show-bio-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.recogni.com/wp-content/cache/min/1/wp-content/themes/bigdrop-theme/dist/js/common.js?ver=1694477156' id='custom-common-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.recogni.com/wp-content/cache/min/1/wp-content/plugins/contact-form-7/includes/swv/js/index.js?ver=1694477156' id='swv-js' defer></script>
+<script type='text/javascript' id='contact-form-7-js-extra'>
+/* <![CDATA[ */
+var wpcf7 = {"api":{"root":"https:\/\/www.recogni.com\/wp-json\/","namespace":"contact-form-7\/v1"},"cached":"1"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.recogni.com/wp-content/cache/min/1/wp-content/plugins/contact-form-7/includes/js/index.js?ver=1694477156' id='contact-form-7-js' defer></script>
+<script type='text/javascript' id='cmplz-cookiebanner-js-extra'>
+/* <![CDATA[ */
+var complianz = {"prefix":"cmplz_","user_banner_id":"1","set_cookies":[],"block_ajax_content":"0","banner_version":"80","version":"6.5.3","store_consent":"","do_not_track_enabled":"","consenttype":"optin","region":"eu","geoip":"","dismiss_timeout":"","disable_cookiebanner":"","soft_cookiewall":"","dismiss_on_scroll":"","cookie_expiry":"365","url":"https:\/\/www.recogni.com\/wp-json\/complianz\/v1\/","locale":"lang=en&locale=en_US","set_cookies_on_root":"0","cookie_domain":"","current_policy_id":"15","cookie_path":"\/","categories":{"statistics":"statistics","marketing":"marketing"},"tcf_active":"","placeholdertext":"Click to accept marketing cookies and enable this content","aria_label":"Click to accept marketing cookies and enable this content","css_file":"https:\/\/www.recogni.com\/wp-content\/uploads\/complianz\/css\/banner-{banner_id}-{type}.css?v=80","page_links":{"eu":{"cookie-statement":{"title":"Cookie Policy ","url":"https:\/\/www.recogni.com\/cookie-policy-eu\/"},"privacy-statement":{"title":"Privacy Policy","url":"https:\/\/www.recogni.com\/privacy-policy\/"}}},"tm_categories":"","forceEnableStats":"","preview":"","clean_cookies":""};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" defer data-rocket-type='text/javascript' data-rocket-src='https://www.recogni.com/wp-content/plugins/complianz-gdpr/cookiebanner/js/complianz.min.js?ver=6.5.3' id='cmplz-cookiebanner-js'></script>
+<!-- Statistics script Complianz GDPR/CCPA -->
+						<script type="text/plain" data-category="statistics">window['gtag_enable_tcf_support'] = false;
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '', {
+	cookie_flags:'secure;samesite=none',
+	'anonymize_ip': true
+});
+</script><script>window.lazyLoadOptions = {
+                elements_selector: "img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",
+                data_src: "lazy-src",
+                data_srcset: "lazy-srcset",
+                data_sizes: "lazy-sizes",
+                class_loading: "lazyloading",
+                class_loaded: "lazyloaded",
+                threshold: 300,
+                callback_loaded: function(element) {
+                    if ( element.tagName === "IFRAME" && element.dataset.rocketLazyload == "fitvidscompatible" ) {
+                        if (element.classList.contains("lazyloaded") ) {
+                            if (typeof window.jQuery != "undefined") {
+                                if (jQuery.fn.fitVids) {
+                                    jQuery(element).parent().fitVids();
+                                }
+                            }
+                        }
+                    }
+                }};
+        window.addEventListener('LazyLoad::Initialized', function (e) {
+            var lazyLoadInstance = e.detail.instance;
+
+            if (window.MutationObserver) {
+                var observer = new MutationObserver(function(mutations) {
+                    var image_count = 0;
+                    var iframe_count = 0;
+                    var rocketlazy_count = 0;
+
+                    mutations.forEach(function(mutation) {
+                        for (i = 0; i < mutation.addedNodes.length; i++) {
+                            if (typeof mutation.addedNodes[i].getElementsByTagName !== 'function') {
+                                return;
+                            }
+
+                           if (typeof mutation.addedNodes[i].getElementsByClassName !== 'function') {
+                                return;
+                            }
+
+                            images = mutation.addedNodes[i].getElementsByTagName('img');
+                            is_image = mutation.addedNodes[i].tagName == "IMG";
+                            iframes = mutation.addedNodes[i].getElementsByTagName('iframe');
+                            is_iframe = mutation.addedNodes[i].tagName == "IFRAME";
+                            rocket_lazy = mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');
+
+                            image_count += images.length;
+			                iframe_count += iframes.length;
+			                rocketlazy_count += rocket_lazy.length;
+
+                            if(is_image){
+                                image_count += 1;
+                            }
+
+                            if(is_iframe){
+                                iframe_count += 1;
+                            }
+                        }
+                    } );
+
+                    if(image_count > 0 || iframe_count > 0 || rocketlazy_count > 0){
+                        lazyLoadInstance.update();
+                    }
+                } );
+
+                var b      = document.getElementsByTagName("body")[0];
+                var config = { childList: true, subtree: true };
+
+                observer.observe(b, config);
+            }
+        }, false);</script><script data-no-minify="1" async src="https://www.recogni.com/wp-content/plugins/rocket-lazy-load/assets/js/16.1/lazyload.min.js"></script></body>
+</html>
+
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me -->

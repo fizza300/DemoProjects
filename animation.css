@@ -1,0 +1,47 @@
+/* Reset some default styles */
+body, h1, h2, ul, li, p, a {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a background color or image for the body */
+body {
+    background-color: #f0f0f0; /* Example background color */
+    /* background-image: url('your-image.jpg'); */ /* Example background image */
+    /* background-size: cover; */ /* Uncomment this line if you want to use a background image */
+    font-family: Arial, sans-serif;
+}
+
+/* Style the header */
+header {
+    background-color: #007BFF;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Style the card */
+.card img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image horizontally */
+    transition: transform 0.3s ease-in-out; /* Add smooth transition effect */
+}
+
+/* Apply the animation on hover */
+.card:hover img {
+    transform: scale(1.1); /* Increase image size by 10% on hover */
+}
+
+/* Style the footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 260px;
+}
+
+
+
